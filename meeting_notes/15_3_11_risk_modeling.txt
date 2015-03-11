@@ -1,0 +1,30 @@
+ACTION ITEMS:
+
+MIKE
+- continuing to populate/build database. Presentation layer will be needed for demonstration, also prioritizing subject data and processing imaging metadata.
+
+IVO
+- adding discussion of metadata challenges to experience document (lack of XSD describing the IDA xml schema);
+- will distribute PPP pipeline in the next few days (prior to upcoming demo)
+
+RAVI
+- continuing to coordinate with Kyle at Argonne to implement globus endpoint/Loni integration and extending cloud data API
+
+BEN
+- work with ISB team on genomic data validation: goal is to be able to document/generalize - perhaps make part of the pipeline
+
+JOE
+- updates on NIH progress report
+
+MEETING SUMMARY:
+attendees: Mike, Carl, Eric, MIke, Ivo, Nathan (and some more people may have called in during the chat)
+
+We basically worked through the action items from the previous meetings, starting with Mike. He’s making progress on building a data dictionary and populating the database. He’s currently prioritizing metadata processing and populating subject data that can be used with a to-be-made presentation layer for the demo. Imaging data is a later phase of work for him. I (Ben) asked what Mike thought about data validation, and where it would go in the general process of database building, data analysis, and statistical modeling. Mike suggested that it’s probably good to do various kinds of validation at different levels, including during data import, and preliminary analysis within the pipeline we’re developing. He said he’d mention it to Carl as something to think about.
+
+Ivo was sorry to report that there’s no formal xsd file defining the IDA metadata xml schema, but he and mike agreed they can move forward on the database work without (though that would make things easier). We agreed that it that the wide range of metadata and the lack of metadata documentation or standardization is an issue to add to the experience document as we keep in mind the challenges of generalizing big data science experiences from this Parkinson’s/PPMI example. Ivo is continuing to process imaging data. He will also distribute an implementation of the transproteomic pipeline in the next few days for the upcoming demo. He asked Eric if there were other proteomic tools from ISB for further demos (I think they’ll follow up on this point offline, but am not sure)
+
+Ravi wasn’t able to make this meeting, but Ivo informed us that the work to set up the globus endpoint and integrate it with Loni and other cloud infrastructure is ongoing.
+
+Ben reported that preliminary genomic analysis is underway at ISB, and more will follow, particularly the investigation of covariates, as metadata is increasingly available through Mike’s work.
+
+We’ll chat again next week!

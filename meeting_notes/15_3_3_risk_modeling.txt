@@ -1,0 +1,81 @@
+Present, Mike, Ivo, Ravi, Nathan, Gustavo, Eric, Jack, Joe
+
+Mike: 
+data model - 
+- a little premature for generic/universal data model for BDDS informed by implementation/architecture; but what he’s been doing:
+- download study data (CSV files from PPMI site/IDA); reverse-engineer to SQL schema to build relational database (PostGres); getting imported, making primary keys, establishing key relationships using PACNO
+- next plan is to do same for imaging data
+- want “useful ETL process” to look at data
+- had conversation with Ravi -> what is source RDBMS?
+- trying to go from study specific data to more generalizable (fixing the passing flat text files problem)
+key notions: subject, observations (consisting of activities) -> additional vocabularies about what was done; Carl interested applying same classification scheme
+- study tables from csv to database to enable querying
+
+has tools (web service app) and UI layer on top
+* -> shooting to be able to demo their tools by end of the month; has mechanisms for access control, etc.
+
+next: to get image data (has gotten ~250G raw archive data) thinks there’s ~1TB data pre-processed, hasn’t used.
+
+Couple questions:
+-> image metadata from IDA is xml files - what’s the schema? Part of LONI somehow (IVO can get to MIKE)
+-> some data (Symbol-digit-modalities table) have patient numbers that don’t match up to existing patient numbers. Who is the curative authority for this data? Had phone call with Karen Crawford, who was helping get data out of IDA… Another example: RECNO field (record number?) -> Joe says ask Karen for all questions.
+
+Imaging/genomic data:
+Ivo: is now running imaging data to extract biomarkers; 900 cases, ~100 processing steps
+Ravi: so you’ve identified workflow to generate signature vectors?
+Ivo: yes.
+Ravi: documented?
+Ivo: testing now with global shape analysis (p 8 of technical report)
+Ravi: wants to keep up with work for education, so please see notes/docs
+Ivo: see link on p 8 of technical report (can run workflow with ~10 test cases), also has DOI of manuscript with technical details.
+
+* Ben: ISB; putting analysis team together now.
+
+Mike: 949 subjects - doesn’t correlate to study tables (has 811)
+
+Joe: had conversation with Arthur - doesn’t see legal problems with data sharing via globus endpoint
+* Ravi: can take point on setting up globus endpoint.
+Mike: confirm with Ravi - do you know what I need?
+* Ravi - can follow up with Ivo (and Mike); has done before
+
+Ivo will get lung schema to mike
+
+Joe update with Arthur:
+- have monthly calls with NIH; Ravi and Joe did nice demo with galaxy
+- built trans-proteomic pipeline in galaxy, branded with BDDS, created workflow, demo given to NIH
+- on Amazon infrastructure; had question on who pays
+
+2nd demo: cohort discovery dashboard (a big hit)
+
+Want to do 2 demos/month for NIH
+(Mike, Ivo next - PPP workflow that Ravi has showcased, but using Loni)
+
+Eric - modeling data
+Jack VanHorn - manage data
+Ravi - manipulate data
+
+Twist: NIH wants to sit in on these calls; Joe is suggesting 1/month (discussing)
+
+Ravi: found it interesting; 4-5 program officers on call. Questions were very boiler plate; want to see how these things get created…
+
+Awaiting template for progress report due at end of the month. (JOE action item)
+
+-> mention to Joe’s desire for NIH to consider career development.
+
+Joe will make demo list on google doc
+
+
+
+from Joe: 
+For today’s 10 am call on the Parkinson’s Risk Model, I may be a bit late so please start without me.
+You will likely have to be the “host” on the call.
+Here are the particulars. 
+712.775.7031 Passcode 619-694-209 Host PIN is 1123
+Action steps from last call – 2/24/15
+	•	Review Data model from Mike and Carl
+	•	Subject ID with PPMI data - Ivo
+	•	Globus endpoint for control access capability on PPMI data. Clarify legal issues around data use agreement with PPMI. What are the legal limits? As long as we act as a group or team and everyone has been given authenticated, can we have full access? Joe and Arthur
+	•	Discussion point, Sage Bionetworks, from Ben.
+	•	As a follow up point to yesterday's discussion about a Globus endpoint as an intermediate step for data management, I'd like to bring Sage Bionetworks and their Synapse platform to your attention.
+	•	There's an introductory document from Sage here: https://s3.amazonaws.com/static.synapse.org/About_Synapse.pdf
+	•	I'm currently using the Synapse platform to manage data for another big collaborative project, and they seem to have made good progress on things like managing data provenance, version tracking, and other questions that are arising in our collaboration.
