@@ -1,0 +1,19 @@
+Data In Hand:
+
+PLINK data set - 
+
+immunochip SNP data for 523 individuals
+
+Gustavo has found 39 RSIDs in the GWAS catalog annotated with “Parkinson’s disease” with affect allele and odds ratios.
+
+Maybe raw PPMI data: on LONI/IFS: /ifs/loni/ccb/data/2015/BDDS_ISB_Chicago_UM_PPMI/genetics_data/PPMI_GeneticsData_wes_645_cohort_vcf.tar
+
+vcf files from “Exome sequencing variants” - “Exome sequencing was performed on whole-blood extracted DNA samples collected according to the	PPMI	Research Biomarkers Laboratory Manual using Illumina Nextera Rapid Capture Expanded Exome Kit (targets 201,121 Exons,UTRs and miRNA”
+
+- fast files were aligned with BWA against hg19; picard processing to remove duplicate reads and indexing; GATK to recalibrate base quality scores and perform local re-alignments; variant calling and genotype likelihoods with GATK Haplotype Caller; joint genotyping for the cohort; variant filtering was then applied using GATK variant quality score recalibration tools; PLINK for quality control. (.fastq -> .bam -> .vcf)
+
+
+1) generate features for matrix
+2) future analysis
+-> data needs
+-> how want to work with data
