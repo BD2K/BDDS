@@ -1,0 +1,23 @@
+Present, Ravi, Carl, Kyle, Joe, Jack, Arthur, Ben, Christina Liu, (+ others?)
+
+Action Items:
+
+JOE 
+- Add Milestone doc to Google Docs folder to make a living document for collaborative development
+
+BEN 
+- Chat with Gustavo - we’d benefit from his input at this point.
+- Contribute to Milestone Doc (add steps for integrating genomic analysis)
+
+RAVI
+- begin list of possible genomic databases that we may be able to query programmatically from within the pipeline environment. Example: NIH Division of Genomic Science’s Catalog of Published Genome-Wide Association Studies (https://www.genome.gov/26525384). Of particular interest: API availability for resources identified
+
+
+Meeting Summary:
+Carl and Mike began the meeting with discussion of the draft figure that describes the pipeline and the preliminary milestones document. We discussed the idea of a discovery cycle that begins with acquisition and organization of raw data to targeted data subsetting and dynamic generation of derived features for further subsetting and analysis that enables discovery.
+
+We touched on early questions of what aspects of this discovery cycle may be generalized, with discussion of the AD working group’s early efforts. Art asked whether we’ll be able to look at patterns between genes/networks/clusters among populations between the AD and PD populations - a vision that will require layered analytics and multiple rounds of the discovery cycle. Questions such as how we might find or use biological information to link different data sets are opportunities for our research.
+
+Next, Ben summarized the genomic data and preliminary analysis. We have immunochip SNP data for 196,524 SNPs from 523 individuals (in PLINK’s 3-file format), and 707050 exome sequencing variants for 645 individuals (in the vcf file format). We have parsed the SNP data for summary information and to get sample IDs which may be cross-referenced with other PPMI data. Technically, ISB can do more (and more interesting) analysis of the vcf files. We have queried the NIH Division of Genomic Science’s Catalog of Published Genome-Wide Association Studies database (https://www.genome.gov/26525384) to identify 39 rsids that have been associated with increased risk for Parkinson’s disease. Of these, we have identified six that fall within the exomic regions that we have data for: one on chromosome 12, and 5 on chromosome 17.
+
+With this summary, the group expressed interest in adding the ability to conduct similar analysis of genomic data from within the pipeline environment as a next step forward for the working group. At the same time, there was general discussion that it is very important to keep in mind the need to balance the desire for more sophisticated analysis with the implementation of more straightforward analysis tasks under a deadline- and demonstration- driven approach.

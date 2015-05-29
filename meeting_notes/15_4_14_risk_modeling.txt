@@ -1,0 +1,39 @@
+4/14/15 Parkinson’s Risk Model Working Group notes
+
+Present: Ravi, Ian, Kyle, Ben, Gustavo, Nathan, Joe, Mike Arthur, Carl
+
+Action items:
+
+JOE: 
+- Convert milestones doc to Google doc spreadsheet instead of Word document
+
+BEN: 
+- put email from Gustavo that describes genomic preliminary analysis process on Google Drive
+
+GUSTAVO/BEN: 
+- look at disease-connect database
+
+JOE/BEN:
+- Add weekly action items under milestones
+
+RAVI: EBI (I’m sorry, I didn’t take more complete notes on this action item -bh).
+
+
+Important Upcoming Dates:
+- NIH wants a 1-day site visit to LA around Sept. 21
+
+- The Summer meeting is scheduled for August 3 & 4 in LA. Agenda will focus on evaluating the nuts and bolts of what we have.
+
+
+Meeting Summary:
+The bulk of last week’s meeting was spent discussing genomic analysis with Gustavo, including details of querying available databases of GWAS results. The group discussed the challenge of reproducibility, particularly when relying upon online resources that are updated at irregular intervals, and are not versioned. A few approaches to managing this challenge were discussed, but as we’re in an information gathering phase, a final course of action was not yet decided. Gustavo manages the challenge by relying upon recent file timestamps in data releases; we may consider incorporating GWAS catalogues in our product; we may version the query response rather than the catalogue/data resource. Though these approaches have relative pros and cons, they are representative of the current state of the art in genomic analysis, so we need to consider the issue further.
+
+Gustavo also pointed out that gwas catalogues generally contain links to primary literature, but do not include all the information that might be in the external resource. For example, a GWAS study may find that a particular variant is associated with increased risk, but only for a particular subpopulation, or only in concert with other variants. Discovering such additional information is currently a time-intensive process that requires expert knowledge. Developing methods to encode such information in computable ontologies (or other computable formats) remains an area of active research.
+
+Art pointed out that this is really a key objective of our work - the opportunity to link GWAS data to more detailed phenotypes to enable novel stratification of patients is a key opportunity for our Center. Ravi pointed out that in our case, we’re working to use the imaging summary vectors for that purpose.
+
+Joe asked what the next step is, and Carl requested a small-scale walk through of how a GWAS resource is queried, given genomic data. Gustavo has emailed such a description, which Ben offered to put on the Google doc.
+
+At the end of the meeting, Ravi re-emphasized his desire to advance analysis efforts by compiling a list of resources available to our group. He suggested that we need to know what analysis can be done, on what computational resources, at what locations.
+
+Joe released his first teaser trailer for the August 3-4 meeting in LA, and we adjourned.
