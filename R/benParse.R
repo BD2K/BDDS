@@ -79,3 +79,47 @@ PPMIdata <- fromJSON(JSONFilePath) #PPMIdata is now a large list
 # also appears to only import the first element:
 PPMIdata$PATNO
 #[1] 3000
+
+#Okay, so I've got streaming JSON data. Return to jsonlite and try to read streaming.
+
+# clear environment, restart R session, then:
+library(jsonlite)
+JSONFilePath <- "/Users/bheavner/Projects/bdds_center/data/ppmi.json"
+
+PPMIdata <- stream_in(file(JSONFilePath)) # see http://demo.ocpu.io/jsonlite/man/stream_in/html
+#opening file input connection.
+#Found 812 lines...
+#Error in parse_string(txt, bigint_as_char) : parse error: premature EOF
+
+#(right here) ------^
+#  closing file input connection.
+
+# troubleshooting: http://stackoverflow.com/questions/26245188/importing-json-into-r-with-in-line-quotation-marks
+
+readLines(JSONFilePath, n=1)
+# looks like this: " 
+# {\"PATNO\":3000,\"ENROLL_STATUS\":\"Enrolled\",\"RSNDEC\":null, ...
+#\"QUERY\":null,\"SITE_APRV\":\"08/2014\"}]}"
+
+PPMIdata <- stream_in(file(JSONFilePath),
+                      pagesize=1) # still gives parse_string error after 812 lines
+
+# in shell: sed -n 812p ppmi.json > line812.json
+JSONFilePath <- "/Users/bheavner/Projects/bdds_center/data/line812.json"
+PPMIdata <- stream_in(file(JSONFilePath)) #1 line, gives read error.
+
+#trim last line with: sed -n 1,811p ppmi.json > shorter.json
+# or sed '$d' <file>
+JSONFilePath <- "/Users/bheavner/Projects/bdds_center/data/shorter.json"
+PPMIdata <- stream_in(file(JSONFilePath))
+
+#works! So, suppose I want to basic things: patient ID, diagnosis, and age.
+
+colnames(PPMIdata)
+#looks promising, but... 1) I don't know what most of these are, and 2) nested lists complicate, for example:
+PPMIdata$BIOSPECIMEN[1]
+
+# which columns include numbers?
+colnames(PPMIdata)[sapply(PPMIdata,is.numeric)]
+
+# grab those, put them in a data frame... tomorrow.
