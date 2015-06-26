@@ -119,7 +119,86 @@ colnames(PPMIdata)
 #looks promising, but... 1) I don't know what most of these are, and 2) nested lists complicate, for example:
 PPMIdata$BIOSPECIMEN[1]
 
+# further, many look like they'll make good factors, or combine to be factors...
+
 # which columns include numbers?
 colnames(PPMIdata)[sapply(PPMIdata,is.numeric)]
 
-# grab those, put them in a data frame... tomorrow.
+#exploring more
+lapply(PPMIdata, class) # many: character, ints, lists
+lapply(PPMIdata, length) # each 811 long
+lapply(PPMIdata, dim) # NULL
+lapply(PPMIdata$BIOSPECIMEN, class) # mix of data.frame and NULL
+lapply(PPMIdata$BIOSPECIMEN, length) # a range of values
+lapply(PPMIdata$BIOSPECIMEN, dim) # a range... I see 7 x 14, 43 x 14, NULL
+PPMIdata$BIOSPECIMEN[[810]]
+names(PPMIdata$BIOSPECIMEN[[810]]) # 14 names
+lapply(PPMIdata$BIOSPECIMEN, names) # null or 14
+
+#the following is weird
+PPMIdata$BIOSPECIMEN[[810]]$PATNO # 43 copies of "4139"
+PPMIdata$BIOSPECIMEN[[810]]$GENDER # 43 copies of "Male"
+PPMIdata$BIOSPECIMEN[[810]]$DIAGNOSIS # 43 copies of "Control"
+
+# start making data dictionary to think about what data I want to extract - build data dictionary for colnames(PPMIdata) using str() and class()? For now, just start. Then, I'll think about reformatting for EDA (for example, lumping categorical factors)
+
+PPMIdf <- data.frame(ID = PPMIdata$PATNO)
+
+# Next, I'd like to add the diagnosis... I see it's repeated under each PPMIdata$BIOSPECIMEN element, for example:
+PPMIdata$BIOSPECIMEN[[810]]$DIAGNOSIS
+# If they're all the same within a biosepcimen, use it?
+
+foo <- list()
+for(index in 1:length(PPMIdata$BIOSPECIMEN)) {
+  print(index)
+  if(!is.null(PPMIdata$BIOSPECIMEN[[index]]$DIAGNOSIS)) {
+    foo[[index]] <- unique(PPMIdata$BIOSPECIMEN[[index]]$DIAGNOSIS)
+  }
+}
+
+foo[sapply(foo, is.null)] <- NA
+
+cbind(PPMIdf, unlist(foo)) # length error. Not all samples have biospecimen...
+# I think a data frame should be able to have different length entities. But I also want to make sure that the diagnosis is indexed to the right patient ID...
+
+# do all patient IDs have a biospecimen?
+foo <- list()
+for(index in 1:length(PPMIdata$BIOSPECIMEN)) {
+  print(index)
+  if(!is.null(PPMIdata$BIOSPECIMEN[[index]]$PATNO)) {
+    foo[[index]] <- unique(PPMIdata$BIOSPECIMEN[[index]]$PATNO)
+  }
+}
+
+foo[sapply(foo, is.null)] <- NA
+
+# Nope, there are NULL values for some BIOSPECIMIN entries (e.g. 808, 809)
+
+# So... instead, add a collumn of NAs to the data frame, then populate it with diagnoses for those that exist in biospecimin (diagnosis may be somewhere else, so use BIOSPECIMIN.DIAGNOSIS for column name)
+
+PPMIdf$BIOSPECIMIN.DIAGNOSIS <- rep(NA, length(PPMIdf$ID))
+
+# get all biospecimin patient numbers - There must be a better way...
+BIOSPECIMIN.PATNO <- list()
+for(index in 1:length(PPMIdata$BIOSPECIMEN)) {
+  if(!is.null(PPMIdata$BIOSPECIMEN[[index]]$PATNO)) {
+    BIOSPECIMIN.PATNO[[index]] <- unique(PPMIdata$BIOSPECIMEN[[index]]$PATNO)
+  }
+}
+BIOSPECIMIN.PATNO[sapply(BIOSPECIMIN.PATNO, is.null)] <- NA
+BIOSPECIMIN.PATNO <-  unlist(BIOSPECIMIN.PATNO)
+
+# get all biospecimin diagnoses
+BIOSPECIMIN.DIAGNOSIS <- list()
+for(index in 1:length(PPMIdata$BIOSPECIMEN)) {
+  if(!is.null(PPMIdata$BIOSPECIMEN[[index]]$DIAGNOSIS)) {
+    BIOSPECIMIN.DIAGNOSIS[[index]] <- unique(PPMIdata$BIOSPECIMEN[[index]]$DIAGNOSIS)
+  }
+}
+BIOSPECIMIN.DIAGNOSIS[sapply(BIOSPECIMIN.DIAGNOSIS, is.null)] <- NA
+BIOSPECIMIN.DIAGNOSIS <-  unlist(BIOSPECIMIN.DIAGNOSIS)
+
+# now add the biospecimin.diagnosis to the DF, ordered by patient IDs in the data frame
+PPMIdf$BIOSPECIMIN.DIAGNOSIS <- as.factor(BIOSPECIMIN.DIAGNOSIS[match(PPMIdf$ID, BIOSPECIMIN.PATNO)])
+
+# Neat. So now I've got a way to populate the data frame from a BIOSPECIMIN field. I need to make a function to generalize it, and use that function to further populate the data frame.
