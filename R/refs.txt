@@ -1,5 +1,0 @@
-Some URLs for useful reading:
-http://gastonsanchez.com/work/webdata/getting_web_data_r5_json_data.pdf
-http://www.ibm.com/developerworks/library/bd-jsonr/
-http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf
-http://zevross.com/blog/2015/02/12/using-r-to-download-and-parse-json-an-example-using-data-from-an-open-data-portal/
