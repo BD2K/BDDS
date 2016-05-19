@@ -2,7 +2,7 @@
 # Predictive Big Data Analytics for complex, heterogeneous, incomplete, multi-source, multi-scale, and large Parkinson's disease data
 # Big Data DIscovery Science (BDDS)
 # Statistics Online Computational Resource (SOCR)
-# Uses/references data available in this ZIP file (PBDA_Datasets.zip)
+# Uses/references data available in this ZIP file (PBDA_Datasets.zip, https://github.com/BD2K/BDDS/blob/master/PBDA_PD/PBDA_Datasets.zip)
 # LGLP/CC-BY license
 # Inquiries: http://socr.umich.edu/img/SOCR_Email.png 
 
